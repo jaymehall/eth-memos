@@ -3,7 +3,7 @@
 # ETH Memos
 
 ## Description
-This is a basic CRUD application designed to allow users to simply create, read, update, and delete memos (or notes) that can be saved on the Ethereum blockchain.
+This is a basic application built with a React frontend and a MongoDB, Express Server, and Node.js backend designed to allow users to simply create, read, and update memos. This project originated as a coding-challenge for a company called Nuance, a decentralized blog-posting Dapp built on the ICP (Internet Computer Protocol) blockchain. I intend to refactor this application in the future to utilize either Motoko or Solidity in the backend so that users can store their memos with the peace of mind and security that comes with having data stored on the blockchain.
 
 ## Table of Contents
   - [Installation](#installation)
@@ -25,10 +25,9 @@ N/A
 * React.js 
 * JavaScript 
 * Bootstrap 
-* Solidity 
-* Web3.js 
+* Express
+* MongoDB
 * Node.js 
-* Truffle.js
 
 ## License
 
@@ -42,7 +41,7 @@ N/A
 N/A
 
 ## Next Steps
-N/A
+* As I learn more about writing Smart Contracts with Solidity and Motoko Canisters, I intend to refactor this application to be built with either a Motoko or Solidity backend so that memos created in this application can be stored on the blockchain.
 
 ## Questions
 For additional questions please contact:
