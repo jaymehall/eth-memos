@@ -5,7 +5,7 @@ function Memos({ memos }) {
   console.log(memos);
   return (
     <aside
-      style={{ height: "100vh", width: "35vw" }}
+      style={{ height: "110vh", width: "35vw" }}
       className="border border-info"
     >
       <ListGroup>

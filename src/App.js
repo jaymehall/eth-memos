@@ -9,7 +9,7 @@ function App() {
     { title: "two", date: "5/31/2022" }
   ];
   return (
-    <div style={{ height: "100vh", width: "100vw" }} className="App bg-dark">
+    <div className="App bg-dark">
       <NavBar />
       <div style={{ display: "flex" }}>
         <Memos memos={memos} />
