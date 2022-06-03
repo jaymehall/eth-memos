@@ -28,7 +28,6 @@ router.post("/memos", async (req, res) => {
 
 router.put("/memos/:id", async (req, res) => {
   try {
-    console.log(req.params.id);
     const updateMemo = await Memo.findOneAndUpdate(
       { id: req.params.id },
       {
@@ -36,8 +35,18 @@ router.put("/memos/:id", async (req, res) => {
       },
       { new: true }
     );
-    console.log(updateMemo);
     res.status(200).json("Memo updated!");
+  } catch (err) {
+    res.json(err);
+    res.status(501);
+    res.send("unexpected server error when updating a memo!");
+  }
+});
+
+router.delete("/memos/:id", async (req, res) => {
+  try {
+    const deleteMemo = await Memo.remove({ _id: req.params.id });
+    res.status(200).json("Memo deleted!");
   } catch (err) {
     res.json(err);
     res.status(501);

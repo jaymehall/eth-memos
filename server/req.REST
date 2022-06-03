@@ -2,7 +2,7 @@ POST http://localhost:3001/api/memos
 Content-Type: application/json
 
 {
-    "content": "This is the third memo"
+    "content": "This is the fourth memo"
 }
 
 ###
@@ -18,3 +18,8 @@ Content-Type: application/json
 {
     "content": "hello world"
 }
+
+###
+
+DELETE  http://localhost:3001/api/memos/629961acafb8b4d914fb6da5
+Content-Type: application/json
