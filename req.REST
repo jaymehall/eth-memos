@@ -2,8 +2,8 @@ POST http://localhost:3000/api/memos
 Content-Type: application/json
 
 {
-    "title": "My Musings",
-    "content": "hello world"
+    "title": "Second Memo",
+    "content": "Buy more ICP"
 }
 
 ###
