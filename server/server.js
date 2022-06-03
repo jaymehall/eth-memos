@@ -3,7 +3,6 @@ const logger = require("morgan");
 const mongoose = require("mongoose");
 const path = require("path");
 const dotenv = require("dotenv").config();
-// const htmlRoutes = require("./routes/html-routes.js");
 const apiRoutes = require("./routes/api-routes.js");
 
 const PORT = process.env.PORT || 3001;
@@ -15,16 +14,15 @@ app.use(logger("dev"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// app.use(express.static(path.join(__dirname, "build")));
-// app.get("/", function (req, res) {
-//   res.sendFile(path.join(__dirname, "build", "index.html"));
-// });
+// Serve up static assets
+  app.use(express.static(path.join(__dirname, "../client/build")));
 
-app.use(express.static("public"));
-
-// Import routes
-// app.use("/", htmlRoutes);
 app.use("/api", apiRoutes);
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/build", "index.html"));
+});
+
 
 mongoose.connect(process.env.MONGODB_URI);
 
