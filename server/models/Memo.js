@@ -1,8 +1,10 @@
 const mongoose = require("mongoose");
 
 const MemoSchema = new mongoose.Schema({
-  item: {
+  content: {
+    id: mongoose.Schema.Types.ObjectId,
     type: String,
+    timestamps: true,
     required: true
   }
 });

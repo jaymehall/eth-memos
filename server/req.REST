@@ -1,6 +1,20 @@
-POST http://localhost:3001/api/memo
+POST http://localhost:3001/api/memos
 Content-Type: application/json
 
 {
-    "item": "This is the first memo "
+    "content": "This is the third memo"
+}
+
+###
+
+GET http://localhost:3001/api/memos
+Content-Type: application/json
+
+###
+
+PUT  http://localhost:3001/api/memos/62995c2115dc234ed406a70b
+Content-Type: application/json
+
+{
+    "content": "hello world"
 }
