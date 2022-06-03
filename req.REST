@@ -1,18 +1,19 @@
-POST http://localhost:3001/api/memos
+POST http://localhost:3000/api/memos
 Content-Type: application/json
 
 {
-    "content": "This is the fourth memo"
+    "title": "My Musings",
+    "content": "hello world"
 }
 
 ###
 
-GET http://localhost:3001/api/memos
+GET http://localhost:3000/api/memos
 Content-Type: application/json
 
 ###
 
-PUT  http://localhost:3001/api/memos/62995c2115dc234ed406a70b
+PUT  http://localhost:3000/api/memos/62995c2115dc234ed406a70b
 Content-Type: application/json
 
 {
@@ -21,5 +22,5 @@ Content-Type: application/json
 
 ###
 
-DELETE  http://localhost:3001/api/memos/629961acafb8b4d914fb6da5
+DELETE  http://localhost:3000/api/memos/629961acafb8b4d914fb6da5
 Content-Type: application/json

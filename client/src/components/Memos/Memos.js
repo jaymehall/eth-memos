@@ -17,6 +17,7 @@ function Memos({ memos }) {
             >
               <strong>{memo.title}</strong>
               <div>
+                <small>Unique Id: {memo["_id"]}</small>
                 <small>{memo.date}</small>
               </div>
             </ListGroupItem>

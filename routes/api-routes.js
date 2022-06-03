@@ -15,6 +15,7 @@ router.get("/memos", async (req, res) => {
 router.post("/memos", async (req, res) => {
   try {
     const newMemo = new Memo({
+      title: req.body.title,
       content: req.body.content
     });
     const saveMemo = await newMemo.save();
@@ -31,6 +32,7 @@ router.put("/memos/:id", async (req, res) => {
     const updateMemo = await Memo.findOneAndUpdate(
       { id: req.params.id },
       {
+        title: req.body.title,
         content: req.body.content
       },
       { new: true }
