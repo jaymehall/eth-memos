@@ -17,13 +17,13 @@ This is a basic desktop application designed to allow users to simply create, re
 
 ## Installation
 In order to get this applicaiton running on your local machine, you must have Node.js installed on your computer and follow the steps below:
-* Got to the MongoDB atlas site here: https://www.mongodb.com/cloud/atlas/lp/try2?utm_source=google&utm_campaign=gs_americas_united_states_search_core_brand_atlas_desktop&utm_term=mongodb&utm_medium=cpc_paid_search&utm_ad=e&utm_ad_campaign_id=12212624338&adgroup=115749704103&gclid=Cj0KCQjwheyUBhD-ARIsAHJNM-O_VIbRGGCxGtinMzw0QQJdOaCBCDH9m1Y5U9LWiAwLOQxzN4FuYO8aAktAEALw_wcB
+* Go to the MongoDB atlas site here: https://www.mongodb.com/cloud/atlas/lp/try2?utm_source=google&utm_campaign=gs_americas_united_states_search_core_brand_atlas_desktop&utm_term=mongodb&utm_medium=cpc_paid_search&utm_ad=e&utm_ad_campaign_id=12212624338&adgroup=115749704103&gclid=Cj0KCQjwheyUBhD-ARIsAHJNM-O_VIbRGGCxGtinMzw0QQJdOaCBCDH9m1Y5U9LWiAwLOQxzN4FuYO8aAktAEALw_wcB
 * Create a MongoDB account, create a cluster, and create a user with access to the newly created cluster. Remember the username and password. Then, in the Network Access tab, either add your IP address or choose "allow access from anywhere" to add a universal IP address (universal IP necessary for deployment).
 * Next, clone the repository into a directory of your choice. 
 * Once cloned, change directory into the root directory of this project which you should be able to do with the command ```cd eth-memos```
-* Next, open the project in the IDE of your choice and create a .env file in the root directory of the project and add the following key: `JAWSDB_MARIA_URL`. Next, go to MongoDB and click "connect" on your cluster. Click "Connect Your Application" and copy the connection string and paste it as the value to the key you created in you env file and replace your password with you user password in the connection string. 
+* Next, open the project in the IDE of your choice and create a .env file in the root directory of the project and add the following key: `JAWSDB_MARIA_URL`. Next, go to MongoDB and click "connect" on your cluster. Click the "Connect Your Application" option and copy the connection string that appears and paste it into your .env file as the value to the JAWSDB key you created there. Be sure to replace your password in the connection string with the password for the user you created in MongoDB.
 * Then run the command  ```npm istall``` in the terminal in the root directory of the project to install the necessary dependencies. 
-* Then run ```npm start``` to start the applicaiton.
+* Then run ```npm start``` in the root directory of the project to start the applicaiton.
 * Check https://localhost:3001 to veiw the application on your local machine.
 
 ## Usage
@@ -32,7 +32,7 @@ N/A
 ## Technologies
 * React.js 
 * JavaScript 
-* Bootstrap 
+* Bootstrap/React-Bootstrap
 * Express
 * MongoDB
 * Node.js
