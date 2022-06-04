@@ -31,7 +31,7 @@ In order to get this applicaiton running on your local machine, you must have No
 https://eth-memos.herokuapp.com/
 
 ## Usage
-![application screenshot](./client/src/images/eth-memos-screenshot.png)
+![application screenshot](./client/src/images/eth-memos.gif)
 
 
 ## Technologies
