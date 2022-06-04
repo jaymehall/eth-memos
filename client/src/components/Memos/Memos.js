@@ -4,7 +4,7 @@ import { getLastSync } from "../../utils/helpers";
 import API from "../../utils/API";
 import { useNavigate, useLocation } from "react-router-dom";
 
-function Memos() {
+function Memos({ setCurrentMemoInfo }) {
   const [memos, setMemos] = useState([]);
   const navigate = useNavigate();
   const location = useLocation();
@@ -48,6 +48,11 @@ function Memos() {
                 key={memo["_id"]}
                 className="text-light bg-dark border-info"
                 onClick={() => {
+                  setCurrentMemoInfo({
+                    id: memo["_id"],
+                    title: memo.title,
+                    content: memo.content
+                  });
                   navigate("/edit", {
                     state: {
                       id: memo["_id"],

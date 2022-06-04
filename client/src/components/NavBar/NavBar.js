@@ -1,5 +1,5 @@
 import React from "react";
-import { Alert, Navbar } from "react-bootstrap";
+import { Navbar } from "react-bootstrap";
 import EthLogo from "../../images/eth-small.png";
 
 function NavBar({alert}) {
@@ -10,8 +10,7 @@ function NavBar({alert}) {
         style={{ width: "100px", padding: "10px" }}
         src={EthLogo}
       />
-      <Navbar.Brand href="#home">ETH Memos</Navbar.Brand>
-      {/* <Alert title={alert} style={{width: "50vw"}} /> */}
+      <Navbar.Brand href="/">ETH Memos</Navbar.Brand>
     </Navbar>
   );
 }

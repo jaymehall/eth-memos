@@ -3,7 +3,7 @@ import { Form, Button } from "react-bootstrap";
 import API from "../../utils/API";
 import { useNavigate, useLocation } from "react-router-dom";
 
-function MemoField({ location }) {
+function MemoField({ location, currentMemoInfo }) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
@@ -11,11 +11,15 @@ function MemoField({ location }) {
 
   useEffect(() => {
     if (location.pathname == "/edit") {
-      console.log(location);
-      setTitle(location.state.title);
-      setContent(location.state.content);
+      if (currentMemoInfo == {}) {
+        setTitle(location.state.title);
+        setContent(location.state.content);
+      }
+      console.log(currentMemoInfo);
+      setTitle(currentMemoInfo.title);
+      setContent(currentMemoInfo.content);
     }
-  }, []);
+  }, [currentMemoInfo]);
 
   const saveMemo = () => {
     setHasUnsavedChanges(false);
@@ -24,7 +28,7 @@ function MemoField({ location }) {
       content: content
     };
     if (location.pathname === "/edit") {
-      API.Put(`/api/memos/${location.state.id}`, memoData).then((response) => {
+      API.Put(`/api/memos/${currentMemoInfo.id}`, memoData).then((response) => {
         console.log(response);
         const data = response.data;
         navigate("/edit", {
@@ -56,7 +60,7 @@ function MemoField({ location }) {
     }
     navigate("/");
   };
-  
+
   return (
     <Form className="bg-dark text-light">
       <div style={{ display: "flex" }}>
