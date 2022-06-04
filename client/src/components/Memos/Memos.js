@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { ListGroup, ListGroupItem } from "react-bootstrap";
-import { getLastSync } from "../../utils/helpers";
 import API from "../../utils/API";
 import { useNavigate, useLocation } from "react-router-dom";
-import "./Memos.css"
+import "./Memos.css";
 
 function Memos({ setCurrentMemoInfo }) {
   const [memos, setMemos] = useState([]);
@@ -18,7 +17,28 @@ function Memos({ setCurrentMemoInfo }) {
 
   const memoList = memos.map((memo, index) => {
     return (
-      <ListGroupItem key={index} className="text-light bg-dark border-info">
+      <ListGroupItem
+        onClick={() => {
+          if (location.pathname === "/edit") {
+            setCurrentMemoInfo({
+              id: memo["_id"],
+              title: memo.title,
+              content: memo.content
+            });
+          }
+          if (location.pathname === "/") {
+            navigate("/edit", {
+              state: {
+                id: memo["_id"],
+                content: memo.content,
+                title: memo.title
+              }
+            });
+          }
+        }}
+        key={index}
+        className="text-light bg-dark border-info"
+      >
         <strong>{memo.title}</strong>
         <div>
           <div>
@@ -26,9 +46,7 @@ function Memos({ setCurrentMemoInfo }) {
           </div>
           <div>
             <small>
-              {location.pathname === "/"
-                ? getLastSync(memo.createdAt)
-                : getLastSync(memo.updatedAt)}
+              Last Updated: {new Date(memo.updatedAt).toLocaleString()}
             </small>
           </div>
         </div>
@@ -42,42 +60,7 @@ function Memos({ setCurrentMemoInfo }) {
     >
       <ListGroup>
         {memos.length !== 0 ? (
-          memos.map((memo) => {
-            return (
-              <ListGroupItem
-                key={memo["_id"]}
-                className="text-light bg-dark border-info"
-                onClick={() => {
-                  if (location.pathname === "/edit") {
-                    setCurrentMemoInfo({
-                      id: memo["_id"],
-                      title: memo.title,
-                      content: memo.content
-                    });
-                  }
-                  if (location.pathname === "/") {
-                    navigate("/edit", {
-                      state: {
-                        id: memo["_id"],
-                        content: memo.content,
-                        title: memo.title
-                      }
-                    });
-                  }
-                }}
-              >
-                <strong>{memo.title}</strong>
-                <div>
-                  <div>
-                    <small>Unique Id: {memo["_id"]}</small>
-                  </div>
-                  <div>
-                    <small>{getLastSync(memo.updatedAt)}</small>
-                  </div>
-                </div>
-              </ListGroupItem>
-            );
-          })
+          memoList
         ) : (
           <ListGroupItem className="text-light bg-dark">
             Create a memo to get started!
