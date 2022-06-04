@@ -23,5 +23,5 @@ Content-Type: application/json
 
 ###
 
-DELETE  http://localhost:3001/api/memos/629961acafb8b4d914fb6da5
+DELETE  http://localhost:3001/api/memos/629b04447d23f593beb7ff75
 Content-Type: application/json

@@ -3,6 +3,7 @@ import { ListGroup, ListGroupItem } from "react-bootstrap";
 import API from "../../utils/API";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./Memos.css";
+import DeleteBtn from "../../images/delete-btn.png";
 
 function Memos({ setCurrentMemoInfo }) {
   const [memos, setMemos] = useState([]);
@@ -16,6 +17,12 @@ function Memos({ setCurrentMemoInfo }) {
   }, []);
 
   const memoList = memos.map((memo, index) => {
+    const deleteMemo = () => {
+      API.Delete(`/api/memos/${memo["_id"]}`).then((response) => {
+        setMemos(response.data.reverse());
+        navigate("/");
+      });
+    }
     return (
       <ListGroupItem
         onClick={() => {
@@ -39,6 +46,7 @@ function Memos({ setCurrentMemoInfo }) {
         key={index}
         className="text-light bg-dark border-info"
       >
+        <img onClick={deleteMemo} style={{ width: "20px", float: "right"}} src={DeleteBtn} />
         <strong>{memo.title}</strong>
         <div>
           <div>

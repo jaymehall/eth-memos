@@ -48,7 +48,8 @@ router.put("/memos/:id", async (req, res) => {
 router.delete("/memos/:id", async (req, res) => {
   try {
     const deleteMemo = await Memo.remove({ _id: req.params.id });
-    res.status(200).json("Memo deleted!");
+    const memos = await Memo.find();
+    res.status(200).json(memos);
   } catch (err) {
     res.json(err);
     res.status(501);
