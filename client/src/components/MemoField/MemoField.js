@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 import API from "../../utils/API";
 import { useNavigate } from "react-router-dom";
-import "./MemoField.css"
+import "./MemoField.css";
+import BootstrapModal from "../BootstrapModal/BootstrapModal";
 
 function MemoField({ location, currentMemoInfo }) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -25,7 +27,6 @@ function MemoField({ location, currentMemoInfo }) {
     };
     if (location.pathname === "/edit") {
       API.Put(`/api/memos/${currentMemoInfo.id}`, memoData).then((response) => {
-
         const data = response.data;
         navigate("/edit", {
           state: { id: data.id, content: data.content, title: data.title }
@@ -45,21 +46,31 @@ function MemoField({ location, currentMemoInfo }) {
 
   const handleNewMemo = () => {
     if (hasUnsavedChanges) {
-      let userWantsToSaveChanges = window.confirm(
-        "You have unsaved changes! Do you want to save them before creating a new note? Click OK for yes and Cancel for No."
-      );
-      if (userWantsToSaveChanges) {
-        saveMemo();
-      }
-      setTitle("");
-      setContent("");
+      setShowModal(true);
     }
+  };
+
+  const handleModalNo = () => {
+    setShowModal(false);
     navigate("/");
+  };
+
+  const handleModalYes = () => {
+    saveMemo();
+    setTitle("");
+    setContent("");
+    setShowModal(false);
   };
 
   return (
     <Form className="bg-dark text-light">
       <div style={{ display: "flex" }}>
+        <BootstrapModal
+          noOnClick={handleModalNo}
+          yesOnClick={handleModalYes}
+          show={showModal}
+          setShow={setShowModal}
+        />
         <div>
           <Form.Control
             className="bg-dark text-light"
