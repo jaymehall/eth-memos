@@ -16,7 +16,11 @@ This is a basic CRUD application designed to be used on desktop only to allow us
 
 
 ## Installation
-In order to get this applicaiton running on your local machine, simply clone the repository into a directory of your choice. Once cloned, change directory into the root directory of this project which should be ```cd eth-memos```. Then run the command  ```npm istall``` to install the necessary dependencies. Then run ```npm start``` to start the applicaiton.
+In order to get this applicaiton running on your local machine, you must have Node.js installed on your computer and follow the steps below:
+* Simply clone the repository into a directory of your choice. 
+* Once cloned, change directory into the root directory of this project which you should be able to do with the command ```cd eth-memos```. 
+* Then run the command  ```npm istall``` to install the necessary dependencies. 
+* Then run ```npm start``` to start the applicaiton.
 
 ## Usage
 N/A
