@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
-import API from "../utils/API";
+import API from "../../utils/API";
 import { useNavigate, useLocation } from "react-router-dom";
 
 function MemoField({ location }) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
-  console.log(location);
   const navigate = useNavigate();
 
   useEffect(() => {
     if (location.pathname == "/edit") {
+      console.log(location);
       setTitle(location.state.title);
       setContent(location.state.content);
     }
@@ -56,6 +56,7 @@ function MemoField({ location }) {
     }
     navigate("/");
   };
+  
   return (
     <Form className="bg-dark text-light">
       <div style={{ display: "flex" }}>

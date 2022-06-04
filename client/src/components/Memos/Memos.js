@@ -2,15 +2,20 @@ import React, { useState, useEffect } from "react";
 import { ListGroup, ListGroupItem } from "react-bootstrap";
 import { getLastSync } from "../../utils/helpers";
 import API from "../../utils/API";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function Memos() {
   const [memos, setMemos] = useState([]);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [forceUpdate, setForceUpdate] = useState(false);
+
   useEffect(() => {
     API.Get("/api/memos").then((response) => {
-      console.log(response);
       setMemos(response.data.reverse());
     });
   }, []);
+
   const memoList = memos.map((memo, index) => {
     return (
       <ListGroupItem key={index} className="text-light bg-dark border-info">
@@ -20,7 +25,11 @@ function Memos() {
             <small>Unique Id: {memo["_id"]}</small>
           </div>
           <div>
-            <small>{getLastSync(memo.updatedAt)}</small>
+            <small>
+              {location.pathname === "/"
+                ? getLastSync(memo.createdAt)
+                : getLastSync(memo.updatedAt)}
+            </small>
           </div>
         </div>
       </ListGroupItem>
@@ -33,11 +42,20 @@ function Memos() {
     >
       <ListGroup>
         {memos.length !== 0 ? (
-          memos.map((memo, index) => {
+          memos.map((memo) => {
             return (
               <ListGroupItem
-                key={index}
+                key={memo["_id"]}
                 className="text-light bg-dark border-info"
+                onClick={() => {
+                  navigate("/edit", {
+                    state: {
+                      id: memo["_id"],
+                      content: memo.content,
+                      title: memo.title
+                    }
+                  });
+                }}
               >
                 <strong>{memo.title}</strong>
                 <div>
