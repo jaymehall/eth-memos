@@ -55,6 +55,8 @@ function MemoField({ location, currentMemoInfo }) {
   const handleModalNo = () => {
     setShowModal(false);
     navigate("/");
+    setTitle("");
+    setContent("");
   };
 
   const handleModalYes = () => {
