@@ -10,6 +10,7 @@ function MemoField({ location, currentMemoInfo }) {
   const [content, setContent] = useState("");
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [newMemoId, setNewMemoId] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,25 +21,40 @@ function MemoField({ location, currentMemoInfo }) {
   }, [currentMemoInfo]);
 
   const saveMemo = () => {
+    const updateMemo = (id) => {
+      return API.Put(`/api/memos/${id}`, memoData);
+    };
     setHasUnsavedChanges(false);
     const memoData = {
       title: title,
       content: content
     };
     if (location.pathname === "/edit") {
-      API.Put(`/api/memos/${currentMemoInfo.id}`, memoData).then((response) => {
+      let id = currentMemoInfo.id;
+      updateMemo(id).then((response) => {
         const data = response.data;
+        setNewMemoId(data["_id"]);
         navigate("/edit", {
-          state: { id: data.id, content: data.content, title: data.title }
+          state: { id: data["_id"], content: data.content, title: data.title }
         });
         window.location.reload();
       });
     }
     if (location.pathname === "/") {
+      if (newMemoId) {
+        updateMemo(newMemoId).then((response) => {
+          const data = response.data;
+          navigate("/edit", {
+            state: { id: data.id, content: data.content, title: data.title }
+          });
+          window.location.reload();
+        });
+      }
       API.Post("/api/memos", memoData).then((response) => {
         const data = response.data;
+        setNewMemoId(data["_id"]);
         navigate("/edit", {
-          state: { id: data.id, content: data.content, title: data.title }
+          state: { id: data["_id"], content: data.content, title: data.title }
         });
       });
     }
@@ -48,7 +64,7 @@ function MemoField({ location, currentMemoInfo }) {
     if (hasUnsavedChanges) {
       setShowModal(true);
     } else {
-      navigate("/")
+      navigate("/");
     }
   };
 
