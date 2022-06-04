@@ -5,7 +5,8 @@ router.get("/memos", async (req, res) => {
   try {
     const memos = await Memo.find();
     res.status(200);
-    return res.json(memos);
+    res.json(memos);
+    res.end();
   } catch (err) {
     res.json(err);
     res.status(500);
@@ -21,7 +22,8 @@ router.post("/memos", async (req, res) => {
     });
     const saveMemo = await newMemo.save();
     res.status(201);
-    return res.json(saveMemo);
+    res.json(saveMemo);
+    res.end();
   } catch (err) {
     res.json(err);
     res.status(501);
@@ -40,7 +42,8 @@ router.put("/memos/:id", async (req, res) => {
       { new: true }
     );
     res.status(200);
-    return res.json(updateMemo);
+    res.json(updateMemo);
+    res.end();
   } catch (err) {
     res.json(err);
     res.status(501);
