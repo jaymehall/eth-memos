@@ -1,11 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
-import API from "../../utils/API";
+import API from "../utils/API";
+import { useNavigate, useLocation } from "react-router-dom";
 
-function EditMemoField({ memos, setMemos }) {
+function MemoField({ location }) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
+  console.log(location);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (location.pathname == "/edit") {
+      setTitle(location.state.title);
+      setContent(location.state.content);
+    }
+  }, []);
 
   const saveMemo = () => {
     setHasUnsavedChanges(false);
@@ -13,10 +23,24 @@ function EditMemoField({ memos, setMemos }) {
       title: title,
       content: content
     };
-    API.Post("/api/memos", memoData).then((response) => {
-      console.log(response);
-      window.location.reload();
-    });
+    if (location.pathname === "/edit") {
+      API.Put(`/api/memos/${location.state.id}`, memoData).then((response) => {
+        console.log(response);
+        const data = response.data;
+        navigate("/edit", {
+          state: { id: data.id, content: data.content, title: data.title }
+        });
+        window.location.reload();
+      });
+    }
+    if (location.pathname === "/") {
+      API.Post("/api/memos", memoData).then((response) => {
+        const data = response.data;
+        navigate("/edit", {
+          state: { id: data.id, content: data.content, title: data.title }
+        });
+      });
+    }
   };
 
   const handleNewMemo = () => {
@@ -26,10 +50,11 @@ function EditMemoField({ memos, setMemos }) {
       );
       if (userWantsToSaveChanges) {
         saveMemo();
-      } else {
-        window.location.reload();
       }
+      setTitle("");
+      setContent("");
     }
+    navigate("/");
   };
   return (
     <Form className="bg-dark text-light">
@@ -39,6 +64,7 @@ function EditMemoField({ memos, setMemos }) {
             className="bg-dark text-light"
             style={{ width: "55vw" }}
             type="text"
+            value={title}
             placeholder="Title"
             onChange={(e) => {
               setTitle(e.target.value);
@@ -47,10 +73,18 @@ function EditMemoField({ memos, setMemos }) {
           />
         </div>
         <div>
-          <Button variant="btn-secondary text-light" onClick={handleNewMemo}>
+          <Button
+            disabled={location.pathname === "/" ? !hasUnsavedChanges : false}
+            variant="btn-secondary text-light"
+            onClick={handleNewMemo}
+          >
             New
           </Button>
-          <Button disabled={!hasUnsavedChanges} variant="btn-secondary text-light" onClick={saveMemo}>
+          <Button
+            disabled={!hasUnsavedChanges}
+            variant="btn-secondary text-light"
+            onClick={saveMemo}
+          >
             Save
           </Button>
         </div>
@@ -79,4 +113,4 @@ function EditMemoField({ memos, setMemos }) {
   );
 }
 
-export default EditMemoField;
+export default MemoField;

@@ -1,8 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { ListGroup, ListGroupItem } from "react-bootstrap";
 import { getLastSync } from "../../utils/helpers";
+import API from "../../utils/API";
 
-function Memos({ memos }) {
+function Memos() {
+  const [memos, setMemos] = useState([]);
+  useEffect(() => {
+    API.Get("/api/memos").then((response) => {
+      console.log(response);
+      setMemos(response.data.reverse());
+    });
+  }, []);
   const memoList = memos.map((memo, index) => {
     return (
       <ListGroupItem key={index} className="text-light bg-dark border-info">
