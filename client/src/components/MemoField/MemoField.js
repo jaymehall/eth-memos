@@ -47,6 +47,8 @@ function MemoField({ location, currentMemoInfo }) {
   const handleNewMemo = () => {
     if (hasUnsavedChanges) {
       setShowModal(true);
+    } else {
+      navigate("/")
     }
   };
 
