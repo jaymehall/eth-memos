@@ -9,7 +9,6 @@ function Memos({ setCurrentMemoInfo }) {
   const [memos, setMemos] = useState([]);
   const navigate = useNavigate();
   const location = useLocation();
-  const [forceUpdate, setForceUpdate] = useState(false);
 
   useEffect(() => {
     API.Get("/api/memos").then((response) => {

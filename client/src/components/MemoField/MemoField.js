@@ -10,15 +10,9 @@ function MemoField({ location, currentMemoInfo }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // console.log(navigate);
     if (location.pathname === "/edit") {
-      // if (location.previous == "/") {
-        // setTitle(location.state.title);
-        // setContent(location.state.content);
-      // } else {
-        setTitle(currentMemoInfo.title);
-        setContent(currentMemoInfo.content);
-      // }
+      setTitle(currentMemoInfo.title);
+      setContent(currentMemoInfo.content);
     }
   }, [currentMemoInfo]);
 
@@ -51,7 +45,7 @@ function MemoField({ location, currentMemoInfo }) {
   const handleNewMemo = () => {
     if (hasUnsavedChanges) {
       let userWantsToSaveChanges = window.confirm(
-        "You have unsaved changes! Do you want to save them before creating a new note?"
+        "You have unsaved changes! Do you want to save them before creating a new note? Click OK for yes and Cancel for No."
       );
       if (userWantsToSaveChanges) {
         saveMemo();
