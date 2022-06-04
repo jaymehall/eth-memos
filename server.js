@@ -26,7 +26,7 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/build", "index.html"));
 });
 
-mongoose.connect(process.env.MONGODB_URI);
+mongoose.connect(process.env.JAWSDB_MARIA_URL);
 
 mongoose.connection.on("error", (err) =>
   console.log(`error in mongoose connection ${err}`)
