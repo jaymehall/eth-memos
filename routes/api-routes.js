@@ -4,7 +4,8 @@ const Memo = require("../models/Memo");
 router.get("/memos", async (req, res) => {
   try {
     const memos = await Memo.find();
-    return res.status(200).json(memos);
+    res.status(200);
+    return res.json(memos);
   } catch (err) {
     res.json(err);
     res.status(500);
@@ -19,7 +20,8 @@ router.post("/memos", async (req, res) => {
       content: req.body.content
     });
     const saveMemo = await newMemo.save();
-    return res.status(201).json(saveMemo);
+    res.status(201);
+    return res.json(saveMemo);
   } catch (err) {
     res.json(err);
     res.status(501);
@@ -37,7 +39,8 @@ router.put("/memos/:id", async (req, res) => {
       },
       { new: true }
     );
-    return res.status(200).json(updateMemo);
+    res.status(200);
+    return res.json(updateMemo);
   } catch (err) {
     res.json(err);
     res.status(501);
