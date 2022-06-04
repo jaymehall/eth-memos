@@ -74,15 +74,6 @@ function Memos({ setCurrentMemoInfo }) {
           )}
         </ListGroup>
       )}
-      <ListGroup>
-        {memos.length !== 0 ? (
-          memoList
-        ) : (
-          <ListGroupItem className="text-light bg-dark">
-            Create a memo to get started!
-          </ListGroupItem>
-        )}
-      </ListGroup>
     </aside>
   );
 }
