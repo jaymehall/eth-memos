@@ -46,7 +46,7 @@ function Memos({ setCurrentMemoInfo }) {
         key={index}
         className="text-light bg-dark border-info"
       >
-        <img onClick={deleteMemo} style={{ width: "20px", float: "right"}} src={DeleteBtn} />
+        <img className="rounded-circle" onClick={deleteMemo} style={{ width: "20px", float: "right"}} src={DeleteBtn} />
         <strong>{memo.title}</strong>
         <div>
           <div>
