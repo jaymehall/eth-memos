@@ -5,7 +5,11 @@ import { useLocation } from "react-router-dom";
 
 function EditMemo() {
   const location = useLocation();
-  const [currentMemoInfo, setCurrentMemoInfo] = useState({});
+  const [currentMemoInfo, setCurrentMemoInfo] = useState({
+    id: location.state.id,
+    title: location.state.title,
+    content: location.state.content
+  });
   return (
     <div style={{ display: "flex" }}>
       <Memos setCurrentMemoInfo={setCurrentMemoInfo} />

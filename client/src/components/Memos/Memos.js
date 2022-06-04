@@ -48,18 +48,22 @@ function Memos({ setCurrentMemoInfo }) {
                 key={memo["_id"]}
                 className="text-light bg-dark border-info"
                 onClick={() => {
-                  setCurrentMemoInfo({
-                    id: memo["_id"],
-                    title: memo.title,
-                    content: memo.content
-                  });
-                  navigate("/edit", {
-                    state: {
+                  if (location.pathname === "/edit") {
+                    setCurrentMemoInfo({
                       id: memo["_id"],
-                      content: memo.content,
-                      title: memo.title
-                    }
-                  });
+                      title: memo.title,
+                      content: memo.content
+                    });
+                  }
+                  if (location.pathname === "/") {
+                    navigate("/edit", {
+                      state: {
+                        id: memo["_id"],
+                        content: memo.content,
+                        title: memo.title
+                      }
+                    });
+                  }
                 }}
               >
                 <strong>{memo.title}</strong>

@@ -10,14 +10,15 @@ function MemoField({ location, currentMemoInfo }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (location.pathname == "/edit") {
-      if (currentMemoInfo == {}) {
-        setTitle(location.state.title);
-        setContent(location.state.content);
-      }
-      console.log(currentMemoInfo);
-      setTitle(currentMemoInfo.title);
-      setContent(currentMemoInfo.content);
+    // console.log(navigate);
+    if (location.pathname === "/edit") {
+      // if (location.previous == "/") {
+        // setTitle(location.state.title);
+        // setContent(location.state.content);
+      // } else {
+        setTitle(currentMemoInfo.title);
+        setContent(currentMemoInfo.content);
+      // }
     }
   }, [currentMemoInfo]);
 
