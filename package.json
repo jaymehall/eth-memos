@@ -22,5 +22,8 @@
     "morgan": "^1.10.0",
     "nodemon": "^2.0.16",
     "react-router-dom": "^6.3.0"
-  }
+  },
+  "engines": {
+    "node": "12.11.1"
+    }
 }

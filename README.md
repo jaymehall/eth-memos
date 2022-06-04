@@ -21,6 +21,7 @@ In order to get this applicaiton running on your local machine, you must have No
 * Once cloned, change directory into the root directory of this project which you should be able to do with the command ```cd eth-memos```. 
 * Then run the command  ```npm istall``` to install the necessary dependencies. 
 * Then run ```npm start``` to start the applicaiton.
+* Check https://localhost:3001 to veiw the application.
 
 ## Usage
 N/A
