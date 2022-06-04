@@ -7,6 +7,7 @@ This is a basic desktop application designed to allow users to simply create, re
 
 ## Table of Contents
   - [Installation](#installation)
+  - [Deployment](#deployment)
   - [Usage](#usage)
   - [Technologies](#technologies)
   - [License](#license)
@@ -26,8 +27,12 @@ In order to get this applicaiton running on your local machine, you must have No
 * Then run ```npm start``` in the root directory of the project to start the applicaiton.
 * Check https://localhost:3001 to veiw the application on your local machine.
 
+## Deployment
+https://eth-memos.herokuapp.com/
+
 ## Usage
-N/A
+![application screenshot](./client/src/images/eth-memos-screenshot.png)
+
 
 ## Technologies
 * React.js 
