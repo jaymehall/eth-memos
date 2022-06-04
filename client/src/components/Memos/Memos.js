@@ -3,6 +3,7 @@ import { ListGroup, ListGroupItem } from "react-bootstrap";
 import { getLastSync } from "../../utils/helpers";
 import API from "../../utils/API";
 import { useNavigate, useLocation } from "react-router-dom";
+import "./Memos.css"
 
 function Memos({ setCurrentMemoInfo }) {
   const [memos, setMemos] = useState([]);
