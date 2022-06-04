@@ -7,6 +7,10 @@ const MemoSchema = new mongoose.Schema(
       id: mongoose.Schema.Types.ObjectId,
       type: String
     },
+    createdAt: {
+      type: Date,
+      immutable: true,
+    },
     updatedAt: {
       type: Date,
       immutable: true

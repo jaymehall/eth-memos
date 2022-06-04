@@ -11,7 +11,7 @@ function App() {
   useEffect(() => {
     API.Get("/api/memos").then((response) => {
       console.log(response);
-      setMemos(response.data);
+      setMemos(response.data.reverse());
     });
   }, []);
 

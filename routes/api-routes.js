@@ -1,19 +1,6 @@
 const router = require("express").Router();
 const Memo = require("../models/Memo");
-const currentdate = new Date();
-const datetime =
-  "Last Sync: " +
-  currentdate.getDate() +
-  "/" +
-  (currentdate.getMonth() + 1) +
-  "/" +
-  currentdate.getFullYear() +
-  " @ " +
-  currentdate.getHours() +
-  ":" +
-  currentdate.getMinutes() +
-  ":" +
-  currentdate.getSeconds();
+const currentDate = new Date();
 
 router.get("/memos", async (req, res) => {
   try {
@@ -31,7 +18,7 @@ router.post("/memos", async (req, res) => {
     const newMemo = new Memo({
       title: req.body.title,
       content: req.body.content,
-      updatedAt: datetime
+      createdAt: currentDate
     });
     const saveMemo = await newMemo.save();
     res.status(201).json(saveMemo);
@@ -49,7 +36,7 @@ router.put("/memos/:id", async (req, res) => {
       {
         title: req.body.title,
         content: req.body.content,
-        updatedAt: datetime
+        updatedAt: currentDate
       },
       { new: true }
     );

@@ -3,10 +3,6 @@ import { ListGroup, ListGroupItem } from "react-bootstrap";
 import { getLastSync } from "../../utils/helpers";
 
 function Memos({ memos }) {
-  // useEffect(() => {
-
-  // }, [memos])
-  console.log(memos);
   const memoList = memos.map((memo, index) => {
     return (
       <ListGroupItem key={index} className="text-light bg-dark border-info">
@@ -31,7 +27,10 @@ function Memos({ memos }) {
         {memos.length !== 0 ? (
           memos.map((memo, index) => {
             return (
-              <ListGroupItem key={index} className="text-light bg-dark border-info">
+              <ListGroupItem
+                key={index}
+                className="text-light bg-dark border-info"
+              >
                 <strong>{memo.title}</strong>
                 <div>
                   <div>

@@ -26,11 +26,8 @@ function EditMemoField({ memos, setMemos }) {
       );
       if (userWantsToSaveChanges) {
         saveMemo();
-        setTitle("");
-        setContent("");
       } else {
-        setTitle("");
-        setContent("");
+        window.location.reload();
       }
     }
   };
