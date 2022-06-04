@@ -20,7 +20,7 @@ function App() {
       <NavBar />
       <div style={{ display: "flex" }}>
         <Memos memos={memos} />
-        <EditMemoField />
+        <EditMemoField memos={memos} setMemos={setMemos}/>
       </div>
     </div>
   );

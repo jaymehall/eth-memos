@@ -1,5 +1,19 @@
 const router = require("express").Router();
 const Memo = require("../models/Memo");
+const currentdate = new Date();
+const datetime =
+  "Last Sync: " +
+  currentdate.getDate() +
+  "/" +
+  (currentdate.getMonth() + 1) +
+  "/" +
+  currentdate.getFullYear() +
+  " @ " +
+  currentdate.getHours() +
+  ":" +
+  currentdate.getMinutes() +
+  ":" +
+  currentdate.getSeconds();
 
 router.get("/memos", async (req, res) => {
   try {
@@ -16,14 +30,15 @@ router.post("/memos", async (req, res) => {
   try {
     const newMemo = new Memo({
       title: req.body.title,
-      content: req.body.content
+      content: req.body.content,
+      updatedAt: datetime
     });
     const saveMemo = await newMemo.save();
-    res.status(201).json("Memo added successfully!");
+    res.status(201).json(saveMemo);
   } catch (err) {
     res.json(err);
     res.status(501);
-    res.send("unexpected server error when posting a memo!");
+    res.send("Unexpected server error when posting a memo!");
   }
 });
 
@@ -33,15 +48,16 @@ router.put("/memos/:id", async (req, res) => {
       { id: req.params.id },
       {
         title: req.body.title,
-        content: req.body.content
+        content: req.body.content,
+        updatedAt: datetime
       },
       { new: true }
     );
-    res.status(200).json("Memo updated!");
+    res.status(200).json(updateMemo);
   } catch (err) {
     res.json(err);
     res.status(501);
-    res.send("unexpected server error when updating a memo!");
+    res.send("Unexpected server error when updating a memo!");
   }
 });
 
