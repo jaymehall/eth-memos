@@ -13,7 +13,6 @@ router.get("/memos", async (req, res) => {
 });
 
 router.post("/memos", async (req, res) => {
-  console.log("here")
   try {
     const newMemo = new Memo({
       title: req.body.title,

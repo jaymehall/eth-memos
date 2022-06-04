@@ -25,7 +25,7 @@ function MemoField({ location, currentMemoInfo }) {
     };
     if (location.pathname === "/edit") {
       API.Put(`/api/memos/${currentMemoInfo.id}`, memoData).then((response) => {
-        console.log(response);
+
         const data = response.data;
         navigate("/edit", {
           state: { id: data.id, content: data.content, title: data.title }
