@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 import API from "../../utils/API";
 import { useNavigate, useLocation } from "react-router-dom";
+import "./MemoField.css"
 
 function MemoField({ location, currentMemoInfo }) {
   const [title, setTitle] = useState("");

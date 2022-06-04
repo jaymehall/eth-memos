@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const Memo = require("../models/Memo");
-const today = new Date();
 
 router.get("/memos", async (req, res) => {
   try {
@@ -14,11 +13,11 @@ router.get("/memos", async (req, res) => {
 });
 
 router.post("/memos", async (req, res) => {
+  console.log("here")
   try {
     const newMemo = new Memo({
       title: req.body.title,
-      content: req.body.content,
-      createdAt : today
+      content: req.body.content
     });
     const saveMemo = await newMemo.save();
     res.status(201).json(saveMemo);
@@ -32,11 +31,10 @@ router.post("/memos", async (req, res) => {
 router.put("/memos/:id", async (req, res) => {
   try {
     const updateMemo = await Memo.findOneAndUpdate(
-      { id: req.params.id },
+      { _id: req.params.id },
       {
         title: req.body.title,
-        content: req.body.content,
-        updatedAt: today
+        content: req.body.content
       },
       { new: true }
     );
@@ -44,7 +42,7 @@ router.put("/memos/:id", async (req, res) => {
   } catch (err) {
     res.json(err);
     res.status(501);
-    res.send("Unexpected server error when updating a memo!");
+    res.send("unexpected server error when updating a memo!");
   }
 });
 

@@ -7,14 +7,14 @@ const MemoSchema = new mongoose.Schema(
       id: mongoose.Schema.Types.ObjectId,
       type: String
     },
-    createdAt: {
-      type: Date,
-      default: Date.now,
-    },
-    updatedAt: {
-      type: Date,
-      default: Date.now
-    }
+    // createdAt: {
+    //   type: Date,
+    //   default: Date.now,
+    // },
+    // updatedAt: {
+    //   type: Date,
+    //   default: Date.now
+    // }
   },
   { timestamps: true }
 );
