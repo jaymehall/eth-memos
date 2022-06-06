@@ -32,9 +32,11 @@ https://eth-memos.herokuapp.com/
 
 ## Usage
 Screenshot:
+
 ![application screenshot](./client/src/images/eth-memos.png)
 
-Demo: 
+Demo:
+
 ![application demo](./client/src/images/eth-memos.gif)
 
 
