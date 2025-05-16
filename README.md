@@ -65,4 +65,4 @@ N/A
 For additional questions please contact:
 * The Privacy Dev
 * Email: theprivacydev@protonmail.com
-* https://github.com/theprivacydev
+* https://github.com/jaymehall
